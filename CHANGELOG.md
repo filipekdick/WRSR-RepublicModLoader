@@ -1,5 +1,20 @@
 # Changelog
 
+## Republic Mod Loader v1.0.1
+
+### Workshop and playlists
+
+- Raised the enabled Workshop-item capacity from **4,096 to 40,000** across playlist/configuration handling and runtime-plan generation.
+
+### Launcher
+
+- `RepublicModLoader.exe` can be copied outside the RML Workshop folder and locate its runtime files from Workshop item `3787969749` across Steam's configured library folders, without assuming a particular drive letter.
+- RML can be added to Steam as a non-Steam game. When launched through a generated non-Steam shortcut identity, RML prevents that shortcut App/Game/Overlay identity from being inherited by WRSR while preserving the Steam client session environment.
+
+### Build
+
+- Clang/clang-cl native-runtime builds disable builtin CRT substitution because RML supplies its own freestanding `memcpy`, `memset`, `memcmp` and `strlen` implementations.
+
 ## Republic Mod Loader v1.0.0
 
 Initial public release.

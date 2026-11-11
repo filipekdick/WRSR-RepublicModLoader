@@ -19,8 +19,9 @@ type SemanticDefinition struct {
 }
 
 const (
-	wrsrSHA1117 = "ec05bb6257da31cfcaec639c8462683ee7bcf26158e0751a29a2d48025169522"
-	wrsrSHA1119 = "296644a9f207d609031fc2ae73fed2dcb34619a1d55a35d1c7b51965ce6841b8"
+	wrsrSHA11113 = "4df5fbecc75300e3b843ae4e6426761c84ae2e989321c011c6f560be79122125"
+	wrsrSHA1117  = "ec05bb6257da31cfcaec639c8462683ee7bcf26158e0751a29a2d48025169522"
+	wrsrSHA1119  = "296644a9f207d609031fc2ae73fed2dcb34619a1d55a35d1c7b51965ce6841b8"
 )
 
 var semanticDefinitions = []SemanticDefinition{
@@ -28,13 +29,13 @@ var semanticDefinitions = []SemanticDefinition{
 		ID: "wrsr.resource_get", DisplayName: "ResourceGet", Category: "resource",
 		Temperature: "EXTREME",
 		Evidence:    []string{"unique ResourceGet error-string anchor", "containing runtime function", "known-build decompile cross-check"},
-		KnownRVAs:   map[string]uint32{wrsrSHA1117: 0x2AA7C0, wrsrSHA1119: 0x2AA830},
+		KnownRVAs:   map[string]uint32{wrsrSHA1117: 0x2AA7C0, wrsrSHA1119: 0x2AA830, wrsrSHA11113: 0x2AA7B0},
 	},
 	{
 		ID: "wrsr.construction.tool_frame", DisplayName: "Construction / Tool Interaction Frame", Category: "construction",
 		Temperature: "HOT",
 		Evidence:    []string{"C3D_INPUT::GetMouseSolid interaction frame", "terrain/water collision and construction-tool command dispatch", "cross-build decompile identity"},
-		KnownRVAs:   map[string]uint32{wrsrSHA1117: 0x2F0E70, wrsrSHA1119: 0x2F0F10},
+		KnownRVAs:   map[string]uint32{wrsrSHA1117: 0x2F0E70, wrsrSHA1119: 0x2F0F10, wrsrSHA11113: 0x2F0E90},
 	},
 	{
 		ID: "wrsr.building.assignment_target_select", DisplayName: "Building Assignment Target Selection", Category: "building",

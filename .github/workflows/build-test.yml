@@ -1,0 +1,36 @@
+name: Build experimental Windows package
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.x'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Build launcher and runtime
+        shell: pwsh
+        run: |
+          ./Source/build-all.ps1
+          if ($LASTEXITCODE -ne 0) { throw 'Build failed' }
+          foreach ($file in @('RepublicModLoader.exe', 'rml_runtime.dll')) {
+            if (!(Test-Path "Source/build/$file")) { throw "Missing output: $file" }
+          }
+      - name: Assemble isolated test package
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force test-package
+          Copy-Item ModFiles/rml test-package/rml -Recurse
+          Copy-Item Source/build/RepublicModLoader.exe test-package/
+          Copy-Item Source/build/rml_runtime.dll test-package/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RML-experimental-1.1.1.13
+          path: test-package/
+          if-no-files-found: error

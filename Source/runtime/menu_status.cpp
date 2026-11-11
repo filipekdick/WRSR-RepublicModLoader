@@ -151,6 +151,12 @@ static int ms_contains_ascii_wide(const wchar_t* haystack, size_t length, const 
 
 static int ms_known_menu_function(uint32_t* begin_rva, uint32_t* end_rva) {
     static const char* hash_1119 = "296644a9f207d609031fc2ae73fed2dcb34619a1d55a35d1c7b51965ce6841b8";
+    // Function containing Tesmio P_MENU_VERSION_SITE 0x28B54C.
+    if (rml_strcmp(g_plan.game_sha256, "4df5fbecc75300e3b843ae4e6426761c84ae2e989321c011c6f560be79122125") == 0) {
+        *begin_rva = 0x0028AEE0u;
+        *end_rva = 0x0028B5B0u;
+        return 1;
+    }
     if (rml_strcmp(g_plan.game_sha256, hash_1119) == 0) {
         // Supplied 1.1.1.9 decompilation:
         // FUN_14028af60 -> next function FUN_14028b630.

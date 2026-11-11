@@ -117,6 +117,10 @@ static int known_build_expected_extent(const char* sha, uint32_t* out_rva,
                                        uint32_t* out_next_rva) {
     static const char* hash_1117 = "ec05bb6257da31cfcaec639c8462683ee7bcf26158e0751a29a2d48025169522";
     static const char* hash_1119 = "296644a9f207d609031fc2ae73fed2dcb34619a1d55a35d1c7b51965ce6841b8";
+    // Tesmio b0.3.7 ResourceGet; exclusive end checked against local .pdata.
+    if (rml_strcmp(sha, "4df5fbecc75300e3b843ae4e6426761c84ae2e989321c011c6f560be79122125") == 0) {
+        *out_rva = 0x002AA7B0u; *out_next_rva = 0x002AAA8Fu; return 1;
+    }
     if (rml_strcmp(sha, hash_1117) == 0) {
         *out_rva = 0x002AA7C0u; *out_next_rva = 0x002AAAA0u; return 1;
     }
